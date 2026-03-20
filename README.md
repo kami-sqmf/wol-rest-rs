@@ -80,6 +80,8 @@ Build the image:
 docker compose build
 ```
 
+The provided compose file uses `network_mode: host` so UDP broadcast WOL packets can reach the LAN on Linux.
+
 Initialize the container-managed config:
 
 ```bash
@@ -125,4 +127,5 @@ docker compose down
 - You need a valid PEM certificate and key for HTTPS.
 - The compose file mounts `./data` to `/root/.config/wol` so config persists across runs.
 - The compose file mounts `./certs` to `/certs` read-only; place your PEM files there or change the paths.
-- WOL broadcast from a container can be limited by Docker networking. On Linux, `network_mode: host` is usually the most reliable option. On Docker Desktop for macOS, LAN broadcast behavior may not match native host networking.
+- The compose file is tuned for Linux. `network_mode: host` is the most reliable way to reach broadcast targets such as `192.168.1.255`.
+- Docker Desktop on macOS or Windows does not provide true host networking in the same way, so LAN broadcast WOL may still fail there even if the container runs.

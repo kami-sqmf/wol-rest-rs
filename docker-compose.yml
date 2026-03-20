@@ -5,8 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: wol
     command: ["serve"]
-    ports:
-      - "8443:8443"
+    network_mode: host
     volumes:
       - ./data:/root/.config/wol
       - ./certs:/certs:ro
