@@ -1,0 +1,13 @@
+services:
+  wol:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wol
+    command: ["serve"]
+    ports:
+      - "8443:8443"
+    volumes:
+      - ./data:/root/.config/wol
+      - ./certs:/certs:ro
+    restart: unless-stopped

@@ -1,0 +1,15 @@
+[package]
+name = "wol"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0"
+axum = { version = "0.8", features = ["json"] }
+axum-server = { version = "0.7", features = ["tls-rustls"] }
+clap = { version = "4.5", features = ["derive", "env"] }
+dirs = "6.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.45", features = ["macros", "net", "rt-multi-thread", "signal"] }
+toml = "0.8"
